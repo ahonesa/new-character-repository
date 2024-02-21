@@ -16,9 +16,9 @@ type AppConfig struct {
 }
 
 // LoadConfig reads configuration from environment variables.
-func LoadConfig() AppConfig {
+func LoadConfig(envFile string) AppConfig {
 	// Load .env file if it exists
-	if err := godotenv.Load(); err != nil {
+	if err := godotenv.Load(envFile); err != nil {
 		log.Println("No .env file found")
 	}
 

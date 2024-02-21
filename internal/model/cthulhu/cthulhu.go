@@ -1,5 +1,7 @@
 package cthulhu
 
+import "go.mongodb.org/mongo-driver/bson/primitive"
+
 type CharacterInfo struct {
 	Sex        string `bson:"sex"`
 	Occupation string `bson:"occupation"`
@@ -60,15 +62,15 @@ type Weapon struct {
 }
 
 type Spell struct {
-	Spell     string `bson:"spell"`
-	Cost      string `bson:"cost"`
-	CastTime  string `bson:"cast_time"`
+	Spell    string `bson:"spell"`
+	Cost     string `bson:"cost"`
+	CastTime string `bson:"cast_time"`
 }
 
 type Encounter struct {
-	Entity      string `bson:"entity"`
-	SanityLoss  int    `bson:"sanity_loss"`
-	Total       int    `bson:"total"`
+	Entity     string `bson:"entity"`
+	SanityLoss int    `bson:"sanity_loss"`
+	Total      int    `bson:"total"`
 }
 
 type Stuff struct {
@@ -78,22 +80,23 @@ type Stuff struct {
 }
 
 type CthulhuCharacter struct {
-	OwnerId         string          `bson:"ownerId"`
-	Character       Character       `bson:"character"`
-	Money           int             `bson:"money"`
-	SpendingLevel   int             `bson:"spending_level"`
+	ID            primitive.ObjectID `bson:"_id,omitempty"`
+	OwnerId       string             `bson:"ownerId"`
+	Character     Character          `bson:"character"`
+	Money         int                `bson:"money"`
+	SpendingLevel int                `bson:"spending_level"`
 }
 
 type Character struct {
-	CharacterId     string            `bson:"characterId"`
-	Name            string            `bson:"name"`
-	Notes           string            `bson:"notes"`
-	Info            CharacterInfo     `bson:"info"`
-	Characteristics Characteristic    `bson:"characteristics"`
-	Skills          map[string]Skill  `bson:"skills"`
+	CharacterId      string            `bson:"characterId"`
+	Name             string            `bson:"name"`
+	Notes            string            `bson:"notes"`
+	Info             CharacterInfo     `bson:"info"`
+	Characteristics  Characteristic    `bson:"characteristics"`
+	Skills           map[string]Skill  `bson:"skills"`
 	AdditionalSkills []AdditionalSkill `bson:"additional_skills"`
-	Weapons         []Weapon          `bson:"weapons"`
-	Spells          []Spell           `bson:"spells"`
-	Encounters      []Encounter       `bson:"encounters"`
-	Stuff           []Stuff           `bson:"stuff"`
+	Weapons          []Weapon          `bson:"weapons"`
+	Spells           []Spell           `bson:"spells"`
+	Encounters       []Encounter       `bson:"encounters"`
+	Stuff            []Stuff           `bson:"stuff"`
 }
